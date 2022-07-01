@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ООО ""ИНТЭК""</string>
+    <string name="home">Домой</string>
+    <string name="catalog">Каталог</string>
+    <string name="basket">Корзина</string>
+    <string name="profile">Профиль</string>
+</resources>
