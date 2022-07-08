@@ -5,26 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.intekmarketplace.MainApp
 import com.example.intekmarketplace.adapter.CatalogAdapter
-import com.example.intekmarketplace.adapter.TovAdapter
-import com.example.intekmarketplace.base.MainViewModel
-import com.example.intekmarketplace.base.entities.TovItem
-import com.example.intekmarketplace.databinding.CatalogAdapterBinding
-import com.example.intekmarketplace.databinding.FragmentNoteBinding
+import com.example.intekmarketplace.databinding.FragmentCatalogBinding
 
 class CatalogFragment : Fragment() {
-    private lateinit var binding: CatalogAdapterBinding
+    private lateinit var binding: FragmentCatalogBinding
     private lateinit var adapter: CatalogAdapter
-    private val catalogList: List<String> = mutableListOf("Женщинам","Мужчинам","Пидорам","Дотерам","Анальным контрабандистам","Менструальным фетишистам")
+    private val catalogList: List<String> = mutableListOf("Женщинам","Мужчинам","Детям","Канцтовары","Товары для дома","Мебель", "ХозТовары")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = CatalogAdapterBinding.inflate(inflater, container, false)
+        binding = FragmentCatalogBinding.inflate(inflater, container, false)
         initRcView()
         return binding.root
     }

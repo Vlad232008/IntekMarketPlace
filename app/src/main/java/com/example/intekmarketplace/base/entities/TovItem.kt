@@ -10,5 +10,7 @@ data class TovItem(
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "price")
-    val price: Int
+    val price: Int,
+    @ColumnInfo(name = "invCode")
+    val invCode: String
 ) : Serializable

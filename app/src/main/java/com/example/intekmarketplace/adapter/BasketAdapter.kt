@@ -7,14 +7,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.intekmarketplace.R
+import com.example.intekmarketplace.base.entities.BasketItem
 import com.example.intekmarketplace.base.entities.TovItem
+import com.example.intekmarketplace.databinding.BasketAdapterBinding
 import com.example.intekmarketplace.databinding.TovAdapterBinding
 import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.random.Random
 
-class TovAdapter(private val listener : Listener) :
-    ListAdapter<TovItem, TovAdapter.ItemHolder>(ItemComparator()) {
+class BasketAdapter(private val listener : Listener) :
+    ListAdapter<BasketItem, BasketAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
@@ -25,12 +27,13 @@ class TovAdapter(private val listener : Listener) :
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = TovAdapterBinding.bind(view)
+        private val binding = BasketAdapterBinding.bind(view)
         private val imageList: MutableList<String> = mutableListOf("10\\1097","ХК298","ХК108")
         private var count = 0
-        fun setData(tov: TovItem, listener: Listener) = with(binding) {
-            tvName.text = tov.name
-            tvPrice.text = tov.price.toString()
+        fun setData(basketitem: BasketItem, listener: Listener) = with(binding) {
+            tvName.text = basketitem.name
+            tvPrice.text = basketitem.price.toString()
+            tvCount.text = basketitem.count.toString()
             count = Random.nextInt(0, 3)
             val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(imageList[count].trim()).replace(".gif","/0.jpg")
             Picasso.get()
@@ -38,23 +41,21 @@ class TovAdapter(private val listener : Listener) :
                 .error(R.drawable.ic_baseline_home_24)
                 .into(ivPhoto)
 
-            btnAddItem.setOnClickListener {
-                listener.addItemBasket(tov)
-            }
             //ivPhoto.setImageResource(R.drawable.ic_baseline_manage_accounts_24)
-            /*itemView.setOnClickListener{
-                listener.onClickItem(tov)
+            btnMinus.isEnabled = basketitem.count != 1
+            btnMinus.setOnClickListener{
+                listener.minusCount(basketitem)
             }
-            imDelete.setOnClickListener {
-                listener.deleteItem(note.id!!)
-            }*/
+            btnPlus.setOnClickListener {
+                listener.plusCount(basketitem)
+            }
         }
 
         companion object {
             fun create(parent: ViewGroup): ItemHolder {
                 return ItemHolder(
                     LayoutInflater.from(parent.context)
-                        .inflate(R.layout.tov_adapter, parent, false)
+                        .inflate(R.layout.basket_adapter, parent, false)
                 )
             }
         }
@@ -115,17 +116,19 @@ class TovAdapter(private val listener : Listener) :
         }
     }
 
-    class ItemComparator : DiffUtil.ItemCallback<TovItem>() {
-        override fun areItemsTheSame(oldItem: TovItem, newItem: TovItem): Boolean {
+    class ItemComparator : DiffUtil.ItemCallback<BasketItem>() {
+        override fun areItemsTheSame(oldItem: BasketItem, newItem: BasketItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: TovItem, newItem: TovItem): Boolean {
+        override fun areContentsTheSame(oldItem: BasketItem, newItem: BasketItem): Boolean {
             return oldItem == newItem
         }
     }
 
     interface Listener {
-        fun addItemBasket(tov: TovItem)
+        fun minusCount(basket:BasketItem)
+        fun plusCount(basket:BasketItem)
+        fun saleItem(basket:BasketItem)
     }
 }

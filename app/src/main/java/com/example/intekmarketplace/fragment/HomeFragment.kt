@@ -10,40 +10,30 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.intekmarketplace.MainApp
 import com.example.intekmarketplace.adapter.TovAdapter
 import com.example.intekmarketplace.base.MainViewModel
+import com.example.intekmarketplace.base.entities.BasketItem
 import com.example.intekmarketplace.base.entities.TovItem
 import com.example.intekmarketplace.databinding.FragmentNoteBinding
+import kotlin.random.Random
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),TovAdapter.Listener {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var adapter: TovAdapter
     private val mainViewModel: MainViewModel by activityViewModels {
         MainViewModel.MainViewModelFactory((context?.applicationContext as MainApp).database)
     }
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        insertTov()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNoteBinding.inflate(inflater, container, false)
-        insertTov()
         initRcView()
         observer()
         return binding.root
     }
-/*    private fun onEditResult(){
-        editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if(it.resultCode == Activity.RESULT_OK){
-                val editState = it.data?.getStringExtra(EDIT_STATE_KEY)
-                if (editState == "update"){
-                    mainViewModel.updateNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
-                }
-                else {
-                    mainViewModel.insertNote(it.data?.getSerializableExtra(NEW_NOTE_KEY) as NoteItem)
-                }
-            }
-        }
-    }*/
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,7 +41,7 @@ class HomeFragment : Fragment() {
     private fun initRcView() = with(binding){
 
         rcViewNote.layoutManager = GridLayoutManager(activity, 2)
-        adapter = TovAdapter()
+        adapter = TovAdapter(this@HomeFragment)
         rcViewNote.adapter = adapter
     }
 
@@ -71,21 +61,47 @@ class HomeFragment : Fragment() {
     }
 
     private fun insertTov(){
-        val table = TovItem(
+        when (Random.nextInt(0, 3)) {
+            0 -> {
+                val table = TovItem(
+                    null,
+                    "table",
+                    2000,
+                    ""
+                )
+                mainViewModel.insertTov(table)
+            }
+            1-> {
+                val door = TovItem(
+                    null,
+                    "door",
+                    500,
+                    ""
+                )
+                mainViewModel.insertTov(door)
+            }
+            else -> {
+                val room = TovItem(
+                    null,
+                    "room",
+                    1000,
+                    ""
+                )
+                mainViewModel.insertTov(room)
+            }
+        }
+
+    }
+
+    override fun addItemBasket(tov: TovItem) {
+        val basketItem = BasketItem(
             null,
-            "table",
-            2000,
+            tov.name,
+            tov.price,
+            1,
+            "",
+            tov.invCode
         )
-        val door = TovItem(
-            null,
-            "door",
-            500,
-        )
-        val room = TovItem(
-            null,
-            "room",
-            1000,
-        )
-        mainViewModel.insertTov(table)
+        mainViewModel.insertBasket(basketItem)
     }
 }
