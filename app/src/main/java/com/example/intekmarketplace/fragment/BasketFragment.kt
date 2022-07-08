@@ -51,23 +51,23 @@ class BasketFragment : Fragment(), BasketAdapter.Listener {
     }
 
     override fun minusCount(basket:BasketItem) {
-        val basketItem = BasketItem(null,
-            "",
-            0,
+        val basketItem = BasketItem(basket.id,
+            basket.name,
+            basket.price,
             basket.count - 1,
-            "",
-            ""
+            basket.description,
+            basket.invCode
         )
         mainViewModel.updateBasketCount(basketItem)
     }
 
     override fun plusCount(basket: BasketItem) {
-        val basketItem = BasketItem(null,
-            "",
-            0,
+        val basketItem = BasketItem(basket.id,
+            basket.name,
+            basket.price,
             basket.count + 1,
-            "",
-            ""
+            basket.description,
+            basket.invCode
                 )
         mainViewModel.updateBasketCount(basketItem)
     }
