@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import com.example.intekmarketplace.databinding.ActivityMainBinding
+import com.example.intekmarketplace.fragment.CatalogFragment
 import com.example.intekmarketplace.fragment.HomeFragment
 import com.example.intekmarketplace.manager.FragmentManager
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.catalog->{
                     currentMenuItemId = R.id.catalog
-                    //FragmentManager.setFragment(NoteFragment.newInstance(), this)
+                    FragmentManager.setFragment(CatalogFragment.newInstance(), this)
                 }
                 R.id.basket->{
                     //FragmentManager.currentFrag?.onClickNew()

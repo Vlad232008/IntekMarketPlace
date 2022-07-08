@@ -1,4 +1,4 @@
-package com.example.intekmarketplace
+package com.example.intekmarketplace.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intekmarketplace.R
 import com.example.intekmarketplace.base.entities.TovItem
 import com.example.intekmarketplace.databinding.TovAdapterBinding
 import com.squareup.picasso.Picasso
@@ -32,7 +33,6 @@ class TovAdapter() :
             tvPrice.text = tov.price.toString()
             count = Random.nextInt(0, 3)
             val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(imageList[count].trim()).replace(".gif","/0.jpg")
-           //val url = "https://intekopt.ru/upload/resize_cache/iblock/dc4/340_340_0/dc4b8e0079e6ae6367329600bb96cc35.jpg"
             Picasso.get()
                 .load(url)
                 .error(R.drawable.ic_baseline_home_24)

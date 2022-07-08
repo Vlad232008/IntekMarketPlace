@@ -1,6 +1,5 @@
 package com.example.intekmarketplace.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.intekmarketplace.MainApp
-import com.example.intekmarketplace.TovAdapter
+import com.example.intekmarketplace.adapter.TovAdapter
 import com.example.intekmarketplace.base.MainViewModel
 import com.example.intekmarketplace.base.entities.TovItem
 import com.example.intekmarketplace.databinding.FragmentNoteBinding
@@ -90,6 +86,6 @@ class HomeFragment : Fragment() {
             "room",
             1000,
         )
-        mainViewModel.insertTov(door)
+        mainViewModel.insertTov(table)
     }
 }
