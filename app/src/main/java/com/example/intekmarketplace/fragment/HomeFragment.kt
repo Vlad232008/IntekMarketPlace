@@ -53,9 +53,6 @@ class HomeFragment : Fragment(),TovAdapter.Listener {
     }
 
     companion object {
-        /*const val NEW_NOTE_KEY = "new_note_key"
-        const val EDIT_STATE_KEY = "edit_state_key"
-        */
         @JvmStatic
         fun newInstance() = HomeFragment()
     }

@@ -9,6 +9,7 @@ import com.example.intekmarketplace.databinding.ActivityMainBinding
 import com.example.intekmarketplace.fragment.BasketFragment
 import com.example.intekmarketplace.fragment.CatalogFragment
 import com.example.intekmarketplace.fragment.HomeFragment
+import com.example.intekmarketplace.fragment.ProfileFragment
 import com.example.intekmarketplace.manager.FragmentManager
 
 class MainActivity : AppCompatActivity() {
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     FragmentManager.setFragment(BasketFragment.newInstance(), this)
                 }
                 R.id.profile->{
-                    //startActivity(Intent(this, SettingActivity::class.java))
+                    FragmentManager.setFragment(ProfileFragment.newInstance(), this)
                 }
             }
             true

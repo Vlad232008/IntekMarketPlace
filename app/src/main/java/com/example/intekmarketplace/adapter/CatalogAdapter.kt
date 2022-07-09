@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.intekmarketplace.R
 import com.example.intekmarketplace.databinding.ItemCatalogBinding
 
-class CatalogAdapter(private val names:List<String>) :
+class CatalogAdapter(private val names:List<String>,private val listener : Listener) :
     RecyclerView.Adapter<CatalogAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,12 +28,15 @@ class CatalogAdapter(private val names:List<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.catalogName.text = names[position]
+        holder.binding.catalogName.setOnClickListener{
+            listener.onClickCatalogItem(position)
+        }
     }
 
     override fun getItemCount(): Int {
         return names.size
     }
-    /*interface Listener{
-        fun onClickItem(catalog: List<String>, position: Int)
-    }*/
+    interface Listener{
+        fun onClickCatalogItem(position: Int)
+    }
 }
