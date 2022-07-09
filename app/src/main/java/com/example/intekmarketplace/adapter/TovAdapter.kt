@@ -26,13 +26,11 @@ class TovAdapter(private val listener : Listener) :
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = TovAdapterBinding.bind(view)
-        private val imageList: MutableList<String> = mutableListOf("10\\1097","ХК298","ХК108")
         private var count = 0
         fun setData(tov: TovItem, listener: Listener) = with(binding) {
             tvName.text = tov.name
             tvPrice.text = tov.price.toString()
-            count = Random.nextInt(0, 3)
-            val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(imageList[count].trim()).replace(".gif","/0.jpg")
+            val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(tov.invCode.trim()).replace(".gif","/0.jpg")
             Picasso.get()
                 .load(url)
                 .error(R.drawable.ic_baseline_home_24)

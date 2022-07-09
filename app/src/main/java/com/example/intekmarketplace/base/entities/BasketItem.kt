@@ -10,7 +10,7 @@ data class BasketItem(
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "price")
-    val price: Int,
+    val price: Double,
     @ColumnInfo(name = "count")
     val count: Int,
     @ColumnInfo(name = "description")

@@ -15,42 +15,32 @@ import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.random.Random
 
-class BasketAdapter(private val listener : Listener) :
-    ListAdapter<BasketItem, BasketAdapter.ItemHolder>(ItemComparator()) {
+class ProfileAdapter() :
+    ListAdapter<BasketItem, ProfileAdapter.ItemHolder>(ItemComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.setData(getItem(position), listener)
+        holder.setData(getItem(position))
     }
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = BasketAdapterBinding.bind(view)
         private val imageList: MutableList<String> = mutableListOf("10\\1097","ХК298","ХК108")
         private var count = 0
-        fun setData(basketitem: BasketItem, listener: Listener) = with(binding) {
+        fun setData(basketitem: BasketItem) = with(binding) {
             tvName.text = basketitem.name
             tvPrice.text = basketitem.price.toString()
             tvCount.text = basketitem.count.toString()
-            tvDescription.text = basketitem.description
-            tvInvCode.text = basketitem.invCode
             count = Random.nextInt(0, 3)
-            val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(basketitem.invCode.trim()).replace(".gif","/0.jpg")
+            val url = "https://intekopt.ru/upload/photo/" + getPictureFileName(imageList[count].trim()).replace(".gif","/0.jpg")
             Picasso.get()
                 .load(url)
                 .error(R.drawable.ic_baseline_home_24)
                 .into(ivPhoto)
 
-            //ivPhoto.setImageResource(R.drawable.ic_baseline_manage_accounts_24)
-            btnMinus.isEnabled = basketitem.count != 1
-            btnMinus.setOnClickListener{
-                listener.minusCount(basketitem)
-            }
-            btnPlus.setOnClickListener {
-                listener.plusCount(basketitem)
-            }
         }
 
         companion object {
