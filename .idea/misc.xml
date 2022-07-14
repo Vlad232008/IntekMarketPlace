@@ -19,6 +19,11 @@
         <entry key="..\:/curse/IntekMarketPlace/app/src/main/res/layout/tov_adapter.xml" value="0.17831813576494426" />
         <entry key="..\:/curse/IntekMarketPlace/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/curse/IntekMarketPlace/app/src/main/res/menu/home_menu.xml" value="0.36102564102564105" />
+        <entry key="..\:/curse/IntekMarketPlace2/app/src/main/res/drawable-v24/ic_baseline_delete_24.xml" value="0.181" />
+        <entry key="..\:/curse/IntekMarketPlace2/app/src/main/res/layout/activity_start.xml" value="0.3242753623188406" />
+        <entry key="..\:/curse/IntekMarketPlace2/app/src/main/res/layout/basket_adapter.xml" value="0.3242753623188406" />
+        <entry key="..\:/curse/IntekMarketPlace2/app/src/main/res/layout/fragment_catalog.xml" value="0.3242753623188406" />
+        <entry key="..\:/curse/IntekMarketPlace2/app/src/main/res/layout/item_catalog.xml" value="0.3242753623188406" />
       </map>
     </option>
   </component>

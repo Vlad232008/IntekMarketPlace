@@ -15,6 +15,9 @@ interface Dao {
     @Query("Select* From basket_item")
     fun getAllBasketItem(): Flow<List<BasketItem>>
 
+    @Query("Delete from basket_item where id is :id")
+    suspend fun deleteBasketItem(id:Int)
+
     @Update
     suspend fun updateBasket(item: BasketItem)
 

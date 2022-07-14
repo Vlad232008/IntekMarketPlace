@@ -72,7 +72,11 @@ class BasketFragment : Fragment(), BasketAdapter.Listener {
         mainViewModel.updateBasketCount(basketItem)
     }
 
-    override fun saleItem(basket:BasketItem) {
+    override fun saleItem(basket: BasketItem) {
 
+    }
+
+    override fun deleteItem(id: Int) {
+        mainViewModel.deleteBasket(id)
     }
 }

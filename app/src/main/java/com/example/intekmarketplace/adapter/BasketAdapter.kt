@@ -28,7 +28,7 @@ class BasketAdapter(private val listener : Listener) :
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = BasketAdapterBinding.bind(view)
-        private val imageList: MutableList<String> = mutableListOf("10\\1097","ХК298","ХК108")
+        //private val imageList: MutableList<String> = mutableListOf("10\\1097","ХК298","ХК108")
         private var count = 0
         fun setData(basketitem: BasketItem, listener: Listener) = with(binding) {
             tvName.text = basketitem.name
@@ -50,6 +50,9 @@ class BasketAdapter(private val listener : Listener) :
             }
             btnPlus.setOnClickListener {
                 listener.plusCount(basketitem)
+            }
+            ivDelete.setOnClickListener{
+                basketitem.id?.let { it1 -> listener.deleteItem(it1) }
             }
         }
 
@@ -132,5 +135,6 @@ class BasketAdapter(private val listener : Listener) :
         fun minusCount(basket:BasketItem)
         fun plusCount(basket:BasketItem)
         fun saleItem(basket:BasketItem)
+        fun deleteItem(id:Int)
     }
 }
